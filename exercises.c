@@ -41,9 +41,17 @@ debes reservar memoria para cada elemento que agregues.
 Al finalizar retorna la lista creada.
 */
 
-List* crea_lista() {
-   List* L = create_list();
-   return L;
+List* crea_lista() 
+{
+  List* L = create_list();
+  int i;
+  int *elemento;
+  for (i = 1; i <= 10; i++){
+    elemento = (int *)malloc(sizeof(int));
+    *elemento = i;
+    pushBack(L, elemento);
+  }
+  return L;
 }
 
 /*
@@ -51,8 +59,17 @@ Ejercicio 2.
 Crea una función que reciba una lista de enteros (int*) y 
 retorne la suma de sus elementos.
 */
-int sumaLista(List *L) {
-   return 0;
+int sumaLista(List *L) 
+{
+  int suma = 0;
+  int *elemento;
+  elemento = (int*)first(L);
+  while(elemento != NULL)
+    {
+      suma += *(int *)elemento;
+      elemento = next(L);
+    }
+  return suma;
 }
 
 /*
@@ -64,8 +81,18 @@ Asume que popCurrent luego de eliminar un elemento se
 posiciona en el elemento anterior.
 */
 
-void eliminaElementos(List*L, int elem){
+void eliminaElementos(List*L, int elem)
+{
+  int* elemento = (int *)first(L);
 
+  while(elemento != NULL)
+    {
+      if(*(int*)elemento == elem)
+      {
+        popCurrent(L);
+      }
+      elemento = next(L);
+    }
 }
 
 /*
@@ -75,9 +102,25 @@ El orden de ambas pilas se debe mantener.
 Puedes usar una pila auxiliar.
 */
 
-void copia_pila(Stack* P1, Stack* P2) {
-}
+void copia_pila(Stack* P1, Stack* P2) 
+{
+  int* elemento = (int *)first(P1);
+  int cont = 1;
 
+  while(elemento != NULL)
+    {
+      if(cont == 1)
+      {
+        pushFront(P2, elemento);
+        cont++;
+      }
+      else
+      {
+        pushBack(P2, elemento);
+      }
+      elemento = next(P1);
+    }
+}
 /*
 Ejercicio 5.
 La función verifica si la cadena de entrada tiene sus 
