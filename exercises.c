@@ -170,29 +170,24 @@ int parentesisBalanceados(char *cadena)
           }
       }*/
 
-    int i, j;
+  int i, k;
 
-    int largo = strlen(cadena);
+  int largo = strlen(cadena);
 
-    if (largo % 2 == 1) return 0;
+  if (largo % 2 == 1) return 0;
 
-    for (i = 0, j = largo - 1; i < j; i++, j--)
-    {
-      switch (cadena[i])
-      {
-        case '(':
-          if (cadena[j] != ')') return 0;
-          break;
-        case '{':
-          if (cadena[j] != '}') return 0;
-          break;
-        case '[':
-          if (cadena[j] != ']') return 0;
-          break;
-
+  for (i = 0, k = largo - 1; i < k; i++, k--)
+  {
+      if (cadena[i] == '(') {
+          if (cadena[k] != ')') return 0;
+      } else if (cadena[i] == '{') {
+          if (cadena[k] != '}') return 0;
+      } else if (cadena[i] == '[') {
+          if (cadena[k] != ']') return 0;
       }
-    }
-    return 1;
+  }
+  return 1;
+
 }
 
 
